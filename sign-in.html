@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Web App Sign In</title>
+
+    <link rel="stylesheet" href="client/style.css">
+  </head>
+  <body>
+    <!-- Sidebar -->
+
+    <div class="sidebar-container">
+      <img class="logo" src="public/images/web-app-logo.png" alt="placeholder logo">
+      <h2 class="app-name">Reviews.io</h2>
+   
+      <form>
+        <button
+          class="btn btn-ghost">
+          <img
+            src="public/images/google.png"
+            alt="">
+          Log in with Google
+        </button>
+        <small>or</small>
+        <div
+          class="form-control">
+          <label
+            for="email">Email</label>
+          <input type="email"
+            id="email"
+            placeholder="Enter your email">
+        </div>
+        <div
+          class="form-control">
+          <label
+            for="password">Password</label>
+          <input type="password"
+            id="password"
+            placeholder="Password">
+        </div>
+        <div
+          class="checkbox-container">
+          <input type="checkbox"
+            id="remember">
+          <label
+            for="remember">Remember
+            me</label>
+          <a href="#">Forgot
+            Password</a>
+        </div>
+        <button class="btn">Log
+          In</button>
+        <small>Don't have an
+          account? <a
+            href="#">Sign
+            up</a></small>
+      </form>
+
+    </div>
+
+    <aside>
+      <img class="main-image" src="public/images/sign-up-page.jpeg" alt="sign up page placeholder">
+    </aside>
+
+    <div id="root"></div>
+    <script type="text/html" src="./bundle.js"></script>
+  </body>
+</html>
+
