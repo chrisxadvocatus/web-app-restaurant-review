@@ -104,12 +104,7 @@ input:not([type="checkbox"]) {
   border: 2px solid rgb(238, 146, 47);
 
 }  
-g
-.btn-ghost {
-  background-color: transparent;
-  border-color: #ecf2ff;
-  color: #141c2c;
-}
+
 
 .btn img {
   margin-right: 5px;
