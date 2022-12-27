@@ -108,6 +108,7 @@ input:not([type="checkbox"]) {
 input.btn {
   background-color: lightslategrey;
   border: 2px solid lightslategray;
+  color: #fff;
 
 }
 .btn:hover {
