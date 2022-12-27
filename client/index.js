@@ -7,3 +7,12 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(<App />);
+
+
+function sConsole(event) {
+  event.preventDefault();
+  let data = document.getElementById("data");
+  console.log(data.value);
+}
+
+sConsole()
