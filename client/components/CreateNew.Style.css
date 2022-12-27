@@ -1,0 +1,45 @@
+
+.body{
+    justify-content: center;
+    align-items: center;
+    background-color: #E06F1F;
+    align-self: center; 
+    padding: 15px 15px;
+    border-style: solid;
+    border-color: black;
+    border-width: 8px;
+}
+.textarea {
+    width: 95%;
+    height: 95%; 
+    font-size: 5rem;
+    /* background-color: #E06F1F; */
+    align-self: center; 
+    padding: 15px 15px;
+    border-style: solid;
+    border-color: black;
+    border-width: 8px;
+    object-position: 50% 20%;
+ }
+
+ .txtbox
+    {
+     font-size:18pt;
+     height:700px;
+     width:200px;
+     object-position: 50% 10%;
+    }
+
+ .input-title {
+    align-self: center; 
+    padding: 15px 15px;
+    border-style: solid;
+    border-color: black;
+    border-bottom: hidden;
+    border-width: 8px;
+    font-size:18pt;
+    height:10%;
+    width:50%;
+    top: 10%;
+    object-position: 50% 10%;
+ }  
