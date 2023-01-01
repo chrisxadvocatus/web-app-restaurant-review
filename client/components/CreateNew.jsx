@@ -1,6 +1,8 @@
 import React, { Component, useState, useRef } from 'react';
 import uuid from "react-uuid";
 import './CreateNew.Style.css';
+import SideBar from './SideBar';
+
 
 function CreateNew () {
     const bodyRef = useRef();
@@ -26,17 +28,13 @@ function CreateNew () {
     };
 
   return (
-  <div className="app-createNew">
-  <div className="app-createNew-write">
-  <div className = "body"> 
+  <div className = "text-background"> 
+   <div className="text-body">
      <input className="input-title" type ="text" id="title" placeholder="Title here" ref={titleRef} /> 
-     <div className="textarea">
-         <input className= "textbox" id="body" placeholder="Start here" ref={bodyRef}/> 
+         <input className= "text-box" type="text" id="input"  placeholder="Start here" ref={bodyRef}/> 
      
       <button onClick={onAddNote}>Save</button>
       </div>
-    </div>
-  </div> 
   </div>
   );
 }
