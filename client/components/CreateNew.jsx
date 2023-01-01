@@ -1,7 +1,7 @@
 import React, { Component, useState, useRef } from 'react';
 import uuid from "react-uuid";
 import './CreateNew.Style.css';
-import SideBar from './SideBar';
+
 
 
 function CreateNew () {
