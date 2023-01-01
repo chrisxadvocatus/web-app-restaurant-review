@@ -20,7 +20,12 @@ app.get(
     return res.json(res.locals.curSession);
   }
 );
-
+app.post(
+  '/test',
+  (req, res) => {
+    return res.json('test')
+  }
+)
 app.post('/api', sessionController.updateSession, (req, res) => {
   return res.json(res.locals.updateSession);
 });

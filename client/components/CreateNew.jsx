@@ -1,31 +1,41 @@
-import React, { Component, useState, useRef } from 'react';
+import React, { Component, useState, useRef, useEffect } from 'react';
 import uuid from "react-uuid";
-import './CreateNew.Style.css';
-import SideBar from './SideBar';
+import "./CreateNew.Style.css";
+import axios from 'axios';
 
 
 function CreateNew () {
+  
     const bodyRef = useRef();
     const titleRef = useRef();
     const [newNote, setNewNote] = useState({});
     const [notes, setNotes] = useState([]);
 
     const onAddNote = () => {
-     console.log('hi');
+      console.log('hi');
       const newNoteTemplete = {
        id: uuid(),
        title: titleRef.current.value,
        body:bodyRef.current.value,
-       date : Date.now(),
+       date : new Date().toLocaleDateString(),
       };
-      console.log(bodyRef.current.value);
-      console.log(titleRef.current.value);
-      console.table(newNoteTemplete);
-      const note = Object.assign(newNoteTemplete, {title: bodyRef.current.value, title: titleRef.current.value});
-      setNewNote(newNote);
-      setNotes([newNote, ...notes]);
-      console.log( newNote );
-    };
+      setNewNote( newNoteTemplete );
+      setNotes([ newNoteTemplete, ...notes]);
+      
+      const url = 'http://localhost:8050/api/db'
+      axios.post(
+        url,
+        newNoteTemplete,
+        )
+        .then(function(response){
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        }
+      );
+
+  }
 
   return (
   <div className = "text-background"> 
