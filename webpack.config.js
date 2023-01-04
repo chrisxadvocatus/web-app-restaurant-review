@@ -31,7 +31,6 @@ module.exports = {
       // // match the output 'publicPath'
       publicPath: '/',
     },
-
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
@@ -48,10 +47,16 @@ module.exports = {
         target: 'http://localhost:3000/',
         secure: false,
       },
+      '/api/**': {target: {
+        host: "0.0.0.0",
+        protocol: 'http:',
+        port: 8080
+     }}
       //   '/assets/**': {
       //     target: 'http://localhost:3000/',
       //     secure: false,
       //   },
+      
     },
   },
   module: {
