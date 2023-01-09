@@ -1,16 +1,17 @@
-const Session = require('../models/SessionModel');
+import Session from '../models/sessionModel.js'
 
-const sessionController = {};
+const sessionController = {}
 
 sessionController.startSession = async (req, res, next) => {
-  return next();
-};
+  return next()
+}
 
 sessionController.updateSession = (req, res, next) => {
-  return next();
-};
+  return next()
+}
 
 sessionController.clearupSession = async (req, res, next) => {
-  return next(err);
-};
-module.exports = sessionController;
+  return next(err)
+}
+
+export default sessionController
