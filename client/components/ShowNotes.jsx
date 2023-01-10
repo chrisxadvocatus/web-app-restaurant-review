@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react'
 import "./ShowNotes.css"
 import axios from "axios"
-
+import NotesList from "./NotesList"
 
 function ShowNotes() {
   const [notes, setNotes] = useState([]);
@@ -32,20 +32,27 @@ function ShowNotes() {
   }
 
    return (
-     <div className='background-notes'> 
-     <h1>Notes</h1>
-     
-     {notes.map( note =>{return <div key={note.id} className = "body-note">
-        
-           <h1> { note.title } </h1>
-           <span> { note.body } </span>
-           <span>noteId: { note.id } </span>
-           <button onClick={(e)=>deleteNote(e,note.id)}> Delete</button>
-        
-        </div>})}
+    <div className='background-notes'> 
+    <h1>Notes</h1>
+    
+    {NotesList}
+
     </div>
 
-)
+    //  <div className='background-notes'> 
+    //  <h1>Notes</h1>
+     
+    //  {notes.map( note =>{return <div key={note.id} className = "body-note">
+        
+    //        <h1> { note.title } </h1>
+    //        <span> { note.body } </span>
+    //        <span>noteId: { note.id } </span>
+    //        <button onClick={(e)=>deleteNote(e,note.id)}> Delete</button>
+        
+    //     </div>})}
+    // </div>
+
+ )
 }
 
 export default  ShowNotes;
