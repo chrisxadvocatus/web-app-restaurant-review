@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "solo-project",
   "version": "1.0.0",
@@ -39,3 +40,48 @@
     "webpack-dev-server": "^4.9.0"
   }
 }
+=======
+{
+  "name": "solo-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "NODE_ENV=production node server/server.js",
+    "dev": "concurrently \" webpack-dev-server --open\" \"nodemon ./server/server.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.18.0",
+    "@babel/preset-env": "^7.18.0",
+    "@babel/preset-react": "^7.17.12",
+    "axios": "^0.27.2",
+    "babel-loader": "^8.2.5",
+    "bcrypt": "^5.1.0",
+    "concurrently": "^7.2.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "css-loader": "^6.7.1",
+    "dotenv": "^16.0.3",
+    "dotenv-webpack": "^8.0.1",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.3.4",
+    "nodemon": "^2.0.16",
+    "pg": "^8.7.3",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-redux": "^8.0.2",
+    "sass-loader": "^13.0.0",
+    "style-loader": "^3.3.1"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  }
+}
+>>>>>>> 636c827479b2e2155e818667d5155b72c3ae8787
