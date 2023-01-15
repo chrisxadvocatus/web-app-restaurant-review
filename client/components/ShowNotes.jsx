@@ -10,16 +10,19 @@ function ShowNotes() {
   const [notes, setNotes] = useState([]);
  
   // Load notes on mount
+
   useEffect(()=>{
     axios.get(`${baseUrl}`)
     .then((res)=>{
+
+      console.log(Array.isArray(res.data))
       setNotes(res.data);
+      console.log("notes " + notes);
     })
     .catch((err)=>{
       console.log(err)
     })
   },[])
-
 
   // Client updates
   /**
@@ -52,13 +55,11 @@ function ShowNotes() {
    return (
 
      <div className='background-notes'> 
-     <h1>Notes</h1>
-
-     
-     {notes.map( note =>{return <div key={note.id} className = "body-note">
-        
-    < NotesList note = {note} onDelete={deleteNote} />
-        </div>})}
+     {notes.map((note) => { 
+      return <div key={note.id} className = "body-note">
+      <NotesList note={note} deleteNote={deleteNote} /> 
+      </div>
+      })} 
     </div>
  )
 }
