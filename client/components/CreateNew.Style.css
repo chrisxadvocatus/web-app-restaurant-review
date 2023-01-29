@@ -13,11 +13,16 @@
     }
 
     .text-body{
+      border-radius: 25px;
       margin-top: 12vh;
       margin-left: auto;
       margin-right: auto;
       background-color: orange;
+<<<<<<< HEAD
       padding: 15px 15px;
+=======
+      padding: 40px 20px;
+>>>>>>> 179e2c361e780142c17748420761de93cc18fb63
       border-style: solid;
       border-color: black;
       border-width: 8px;
@@ -30,6 +35,7 @@
   }
 
   .textarea {
+   border-radius: 25px;
    width: 95%;
    height: 95%; 
    font-size: 5rem;
@@ -42,7 +48,7 @@
 }
 
 .text-box{
-    
+border-radius: 25px;   
 margin-left: 20px;
 margin-right: 20px;
 background-color: white;
@@ -79,3 +85,49 @@ left: 50%;
  #input { 
    text-align: right; 
 }
+
+.bttn {
+   display: flex;
+   margin-left: 25vh;
+   gap: 1mm;
+   align-self: center;
+   background-color: #ffffff;
+   background-image: none;
+   /* background-position: 0 90%; */
+   background-repeat: repeat no-repeat;
+   background-size: 4px 3px;
+   border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+   border-style: solid;
+   border-width: 2px;
+   box-shadow: rgba(15, 15, 15, 0.2) 15px 28px 25px -18px;
+   box-sizing: border-box;
+   color: #0d0d0d;
+   cursor: pointer;
+   display: inline-block;
+   font-family: Neucha, sans-serif;
+   font-size: 1rem;
+   line-height: 23px;
+   outline: none;
+   padding: .75rem;
+   transition: all 235ms ease-in-out;
+   border-bottom-left-radius: 15px 255px;
+   border-bottom-right-radius: 225px 15px;
+   border-top-left-radius: 255px 15px;
+   border-top-right-radius: 15px 225px;
+   user-select: none;
+   -webkit-user-select: none;
+   touch-action: manipulation;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   border-radius: 15px;
+ }
+ 
+ .bttn:hover {
+   box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+   transform: translate3d(0, 2px, 0);
+ }
+ 
+ .bttn:focus {
+   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+ }
+ 

@@ -43,7 +43,7 @@ function CreateNew () {
      <input className="input-title" type ="text" id="title" placeholder="Title here" ref={titleRef} /> 
          <input className= "text-box" type="text" id="input"  placeholder="Start here" ref={bodyRef}/> 
      
-      <button onClick={onAddNote}>Save</button>
+      <button className="bttn"  onClick={onAddNote}>Save</button>
       </div>
   </div>
   );
