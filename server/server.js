@@ -5,40 +5,43 @@ import mongoose from 'mongoose'
 import userRoutes from './routes/UserRoutes.js'
 import reviewRoutes from './routes/ReviewRoutes.js'
 import sessionRoutes from './routes/SessionRoutes.js'
+import NotesRoutes from './routes/NotesRoutes.js'
+import cors from 'cors'
+import corsOptions from './config/corsOptions.js'
+
 // import path from 'path'
-// import cors from 'cors'
+
 dotenv.config()
 
 // Instantiate Express App
 const app = express()
-const PORT = process.env.PORT
+const PORT = 3000
 
 // Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
-// app.use(cors(--Needs cors options here--))
+app.use(cors(corsOptions))
 
 // Routes
 app.use('/api/user', userRoutes)
 app.use('/api/review', reviewRoutes)
 app.use('/api/session', sessionRoutes)
+app.use('/api/note', NotesRoutes)
 
 //test
-app.post(
-  '/test',
-  (req, res) => {
-    return res.json('test')
-  }
-)
+// app.post(
+//   '/test',
+//   (req, res) => {
+//     return res.json('test')
+//   }
+// )
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}`);
-});
+
 // test^^^
 
-const NotesRouter = require("./routes/NotesRouter");
-app.use("/CreateNew", NotesRouter);
+
+
 
 // Not Found
 app.use('*', (req, res) => {
@@ -70,3 +73,9 @@ mongoose
 
 
 
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port: ${PORT}`);
+});
+
+// app.use("/CreateNew", NotesRoutes);
