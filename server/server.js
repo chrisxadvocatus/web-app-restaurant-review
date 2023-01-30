@@ -6,8 +6,8 @@ import userRoutes from './routes/UserRoutes.js'
 import reviewRoutes from './routes/ReviewRoutes.js'
 import sessionRoutes from './routes/SessionRoutes.js'
 import NotesRoutes from './routes/NotesRoutes.js'
-import cors from 'cors'
-import corsOptions from './config/corsOptions.js'
+//import cors from 'cors'
+//import corsOptions from './config/corsOptions.js'
 
 // import path from 'path'
 
@@ -21,7 +21,7 @@ const PORT = 3000
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.use(cors(corsOptions))
+//app.use(cors(corsOptions))
 
 // Routes
 app.use('/api/user', userRoutes)

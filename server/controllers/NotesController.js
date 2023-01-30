@@ -44,6 +44,7 @@ const NotesController = {};
 
 NotesController.addNote = async (req, res, next) => {
     console.log("req.body", req.body);
+    console.log("req.header", req);
     const body = req.body;
     const text = `INSERT INTO note(id, title, body, date) VALUES ('${body.id}', '${body.title}', ${body.body}, '${body.date}');`;
   

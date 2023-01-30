@@ -22,10 +22,11 @@ function CreateNew () {
       setNewNote( newNoteTemplete );
       setNotes([ newNoteTemplete, ...notes]);
       
+
       const url = 'http://localhost:3000/api/note/create'
       axios.post(
         url,
-        newNoteTemplete,
+        newNoteTemplete
         )
         .then(function(response){
           console.log(response);
