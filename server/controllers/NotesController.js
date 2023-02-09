@@ -19,7 +19,7 @@ return res.status(200).json ({
 } catch (error) {
     console.log(error)
     return res.status(500).json({
-      message:"Server error",
+      message:"Server error at NotesControllers/createNote",
       error
     })
    }
@@ -34,56 +34,22 @@ export const getAllNotes = async(req,res) => {
   } catch (error) {
     console.log(error)
     return res.status(500).json({
-      message:"Server error",
+      message:"Server error at NotesControllers/getAllNotes",
       error
     })
    }
 }
 
-const NotesController = {};
 
-NotesController.addNote = async (req, res, next) => {
-    console.log("req.body", req.body);
-    console.log("req.header", req);
-    const body = req.body;
-    const text = `INSERT INTO note(id, title, body, date) VALUES ('${body.id}', '${body.title}', ${body.body}, '${body.date}');`;
+export const deleteNote = async(req,res) => {
+  try {
+    Note.findByIdAndRemove(req.body.id)
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      message:"Server error at /NotesControllers/deleteNote",
+      error
+    })
+   }
+}
   
-    console.log(text);
-  
-    await db
-      .query(text)
-      .then(() => {
-        return next();
-      })
-      .catch((err) => {
-        return next(err);
-      });
-  };
-  
-  NotesController.deleteNote = async (req, res, next) => {
-    const body = req.body;
-    const text = `DELETE FROM bill WHERE note.id = ${body.id};`;
-  
-    await db
-      .query(text)
-      .then(() => {
-        return next();
-      })
-      .catch((err) => {
-        return next(err);
-      });
-  };
-
-  NotesController.getNotes = async (req, res, next) => {
-    const queryString = `SELECT * FROM note`
-  
-    await db
-      .query(queryString)
-      .then(() => {
-        return next()
-      })
-      .catch((err) => {
-        return next(err)
-      })
-  }
-  export default NotesController;

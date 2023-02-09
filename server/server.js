@@ -6,6 +6,9 @@ import userRoutes from './routes/UserRoutes.js'
 import reviewRoutes from './routes/ReviewRoutes.js'
 import sessionRoutes from './routes/SessionRoutes.js'
 import NotesRoutes from './routes/NotesRoutes.js'
+import bcrypt from 'bcrypt'
+// import cookieController from './controllers/cookieController.js'
+import verifyJwt from './middlewares/verifyJwt.js'
 //import cors from 'cors'
 //import corsOptions from './config/corsOptions.js'
 
@@ -27,7 +30,7 @@ app.use(cookieParser())
 app.use('/api/user', userRoutes)
 app.use('/api/review', reviewRoutes)
 app.use('/api/session', sessionRoutes)
-app.use('/api/note', NotesRoutes)
+app.use('/api/note',verifyJwt, NotesRoutes)
 
 //test
 // app.post(
@@ -56,7 +59,7 @@ app.use((err, req, res, next) => {
   res.status(500).json(errObj)
 })
 
-// Listen only if db is connected
+
 mongoose.set('strictQuery', false)
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -72,10 +75,8 @@ mongoose
   })
 
 
-
-
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 });
 
-// app.use("/CreateNew", NotesRoutes);
+
