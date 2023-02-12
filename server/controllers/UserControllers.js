@@ -21,7 +21,6 @@ export const signUp = async (req, res) => {
        //check if email is already registered
        const isDuplicate = await User.findOne({email}).exec()
 
-
        if (isDuplicate){
            return res.status(409).json({
                message:'Email is already registered'
@@ -40,7 +39,57 @@ export const signUp = async (req, res) => {
 /**
 * @description Sing In user
 */
-export const signIn = async (req, res) => {}
+export const signIn = async (req, res) => {
+    const {email, password} = req.body;
+    if (!email || password){
+        //if no email, or no password
+        //display error message
+        return res.status(400).json({
+            message: 'Please enter your email address.'
+        })
+    }
+    else if (email || !password){
+        //if no email, or no password
+        //display error message
+        return res.status(400).json({
+            message: 'Please enter your password.'
+        })
+    }
+    else if (!email && !password){
+        return res.status(400).json({
+            message: 'Please enter the required fields.'
+        })
+    }
+    //asynchronous function for hashing a password
+    async function hashPassword(password) {
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+        return hashedPassword;
+      }
+    var EncryptedPassword = hashPassword(req.body.password);
+    User.findOne({email: req.body.email}).then(
+        (user)=>{
+            if (!user){
+                return res.status(401).json({
+                    message: 'Invalid email address and/or password. Please try again.'
+                })
+            }
+            bcrypt.compare(user.password, req.body.password).then(
+                //used to be bcrypt.compare(req.body.password)
+                (correct)=>{
+                    if (!correct){
+                        return res.status(401).json({
+                            message: 'Invalid email address and/or password. Please try again.'
+                        })
+                    }
+                }
+            )
+        }
+    )
+
+
+
+}
 
 
 /**
