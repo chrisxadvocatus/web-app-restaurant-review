@@ -42,14 +42,14 @@ export const signUp = async (req, res) => {
 export const signIn = async (req, res) => {
     const {email, password} = req.body;
     if (!email || password){
-        //if no email, or no password
+        //if no email
         //display error message
         return res.status(400).json({
             message: 'Please enter your email address.'
         })
     }
     else if (email || !password){
-        //if no email, or no password
+        //if no password
         //display error message
         return res.status(400).json({
             message: 'Please enter your password.'
@@ -69,19 +69,27 @@ export const signIn = async (req, res) => {
     var EncryptedPassword = hashPassword(req.body.password);
     User.findOne({email: req.body.email}).then(
         (user)=>{
+            //if the user does not exist -> error message stating email address is incorrect
             if (!user){
                 return res.status(401).json({
                     message: 'Invalid email address and/or password. Please try again.'
                 })
             }
             bcrypt.compare(user.password, req.body.password).then(
-                //used to be bcrypt.compare(req.body.password)
+                //check if hashed db password (user.password) and entered password are equivalent
                 (correct)=>{
+                    //if not, return error message (password is incorrect)
                     if (!correct){
                         return res.status(401).json({
                             message: 'Invalid email address and/or password. Please try again.'
                         })
                     }
+                    //if passwords are equivalent, create session token
+                    const payload = {
+                        username: req.body.email,
+                        exp: Math.floor(Date.now() / 1000) + 60 * 30, // Token expires in 30 minutes
+                      };
+                    const token = jwt.sign(payload, secret);
                 }
             )
         }
