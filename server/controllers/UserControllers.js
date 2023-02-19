@@ -66,7 +66,7 @@ export const signIn = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         return hashedPassword;
       }
-    var EncryptedPassword = hashPassword(req.body.password);
+    let EncryptedPassword = hashPassword(req.body.password);
     User.findOne({email: req.body.email}).then(
         (user)=>{
             //if the user does not exist -> error message stating email address is incorrect
@@ -84,12 +84,6 @@ export const signIn = async (req, res) => {
                             message: 'Invalid email address and/or password. Please try again.'
                         })
                     }
-                    //if passwords are equivalent, create session token
-                    const payload = {
-                        username: req.body.email,
-                        exp: Math.floor(Date.now() / 1000) + 60 * 30, // Token expires in 30 minutes
-                      };
-                    const token = jwt.sign(payload, secret);
                 }
             )
         }
