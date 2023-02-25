@@ -1,5 +1,4 @@
 import User from '../models/UserModel.js'
-import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
 
@@ -97,7 +96,19 @@ export const signIn = async (req, res) => {
 /**
 * @description Sign Out user
 */
-export const signOut = async (req, res) => {}
+export const signOut = async (req, res) => {
+    try{
+        const user = await User.findById(req.user._id);
+        if (!user){
+            return res.status(404).json({error: 'User not found'})
+        }
+        req.logout();
+        res.status(200).json({message: 'User signed out successfully'})
+    }catch(error){
+        console.log(error);
+        res.status(500).json({error: 'Internal server error'});
+    }
+};
 
 
 
