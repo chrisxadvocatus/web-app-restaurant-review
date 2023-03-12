@@ -1,10 +1,14 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
-import mongoose from 'mongoose'
+import mongoose, { connection } from 'mongoose'
 import userRoutes from './routes/UserRoutes.js'
 import reviewRoutes from './routes/ReviewRoutes.js'
 import sessionRoutes from './routes/SessionRoutes.js'
+import session from 'express-session'
+
+const MongoStore = require('connect-mongo')
+
 // import path from 'path'
 // import cors from 'cors'
 dotenv.config()
@@ -17,6 +21,7 @@ const PORT = process.env.PORT
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+
 // app.use(cors(--Needs cors options here--))
 
 // Routes
@@ -36,6 +41,25 @@ app.use((err, req, res, next) => {
   console.log('errObj in global handler', errObj)
   res.status(500).json(errObj)
 })
+
+//session initialization
+
+const sessionStore = new MongoStore({
+  mongooseConnection: connection,
+  collection: 'sessions'
+})
+
+app.use(session({
+  secret: 'secretNoteAppKey123!',
+  resave: false,
+  saveUninitialized: true,
+  store: sessionStore,
+  cookie:{
+    maxAge: 1000*60*60*24 //lasts for 1 day (info stored server-side)
+  }
+}))
+
+
 
 // Listen only if db is connected
 mongoose.set('strictQuery', false)

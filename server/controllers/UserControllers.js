@@ -80,7 +80,7 @@ export const signIn = async (req, res) => {
                         message: 'Invalid email address and/or password. Please try again.'
                     })
                 } 
-                }
+            }
         )}
     else{
         return res.status(401).json({
