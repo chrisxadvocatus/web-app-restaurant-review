@@ -6,8 +6,7 @@ import userRoutes from './routes/UserRoutes.js'
 import reviewRoutes from './routes/ReviewRoutes.js'
 import sessionRoutes from './routes/SessionRoutes.js'
 import session from 'express-session'
-
-const MongoStore = require('connect-mongo')
+import MongoStore from 'connect-mongo'
 
 // import path from 'path'
 // import cors from 'cors'
@@ -44,8 +43,14 @@ app.use((err, req, res, next) => {
 
 //session initialization
 
+const dbHost = 'mongodb+srv://PetrosO123:Breakthrough765321@dev.danyso8.mongodb.net/dev?retryWrites=true&w=majority'
+const dbChoice = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}
+const mongoConnection = mongoose.createConnection(dbHost, dbChoice)
 const sessionStore = new MongoStore({
-  mongooseConnection: connection,
+  mongooseConnection: mongoConnection,
   collection: 'sessions'
 })
 
