@@ -1,7 +1,7 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
-import mongoose, { connection } from 'mongoose'
+import mongoose from 'mongoose'
 import userRoutes from './routes/UserRoutes.js'
 import reviewRoutes from './routes/ReviewRoutes.js'
 import sessionRoutes from './routes/SessionRoutes.js'
@@ -20,6 +20,24 @@ const PORT = process.env.PORT
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+
+mongoose.set('strictQuery', false)
+const sessionStore = new MongoStore({
+  mongoUrl: process.env.MONGO_URI,
+  collection: 'sessions'
+})
+
+app.use(
+  session({
+    secret: 'secretNoteAppKey123!',
+    resave: false,
+    saveUninitialized: true,
+    store: sessionStore,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 //lasts for 1 day (info stored server-side)
+    }
+  })
+)
 
 // app.use(cors(--Needs cors options here--))
 
@@ -41,33 +59,7 @@ app.use((err, req, res, next) => {
   res.status(500).json(errObj)
 })
 
-//session initialization
-
-const dbHost = 'mongodb+srv://PetrosO123:Breakthrough765321@dev.danyso8.mongodb.net/dev?retryWrites=true&w=majority'
-const dbChoice = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}
-const mongoConnection = mongoose.createConnection(dbHost, dbChoice)
-const sessionStore = new MongoStore({
-  mongooseConnection: mongoConnection,
-  collection: 'sessions'
-})
-
-app.use(session({
-  secret: 'secretNoteAppKey123!',
-  resave: false,
-  saveUninitialized: true,
-  store: sessionStore,
-  cookie:{
-    maxAge: 1000*60*60*24 //lasts for 1 day (info stored server-side)
-  }
-}))
-
-
-
-// Listen only if db is connected
-mongoose.set('strictQuery', false)
+// Connect to database
 mongoose
   .connect(process.env.MONGO_URI, {
     useUnifiedTopology: true,
